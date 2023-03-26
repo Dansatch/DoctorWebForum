@@ -1,0 +1,31 @@
+﻿@*_NavBar extension for devices with screen size >= 1000px*@
+@using Microsoft.AspNet.Identity
+
+@*Checks if user is logged in and renders appropriate view*@
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <li class="u-nav-item">
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { userName = User.Identity.GetUserName() }, new { title = "Account", @class = "loginLink u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base", @style = "padding: 10px 20px; color: #478ac9;" })
+        </li>
+
+        <li class="u-nav-item">
+            <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+               href="javascript:document.getElementById('logoutForm').submit()" style="padding: 10px 20px; color: #478ac9;">Log off</a>
+        </li>
+
+    }
+}
+else
+{
+    <li class="u-nav-item">
+        <button onclick="LoginCategory()" class="loginLink u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" style="padding: 10px 20px;">Login</button>
+    </li>
+
+    <li class="u-nav-item">
+        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "registerLink u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base", @style = "padding: 10px 20px" })
+    </li>
+}

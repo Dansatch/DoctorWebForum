@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@Styles.Render("~/Content/css/Home")
+
+<style>
+    body{
+    }
+</style>
+
+<!-- Displays number of users -->
+<span id="visitorCounter" class="visitor-count">
+    @ViewBag.UsersRegistered <i class="fa fa-users"></i>
+</span>
+
+<section class="u-align-center u-clearfix u-image u-section-1" id="carousel_d3b4">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width-xs u-gutter-0 u-layout-wrap u-layout-wrap-1">
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+
+                    <!-- Section header -->
+                    <div class="u-container-style u-layout-cell u-size-24 u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1">
+                            <h4 class="u-custom-font u-font-oswald u-text u-text-grey-50 u-text-1 home-title-header">Doctor's Tank</h4>
+                            <h1 class="u-color-scheme-u10 u-color-style-multicolor-1 u-custom-font u-font-oswald u-text u-title u-text-2 home-about-header">
+                                SAVING THE World&nbsp;
+                            </h1>
+                            <div class="u-border-12 u-border-palette-1-base u-line u-line-horizontal u-line-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- Image Section -->
+                    <div class="u-align-right u-container-style u-image u-image-contain u-image-default u-layout-cell u-size-36 u-image-1"
+                         data-image-width="546" data-image-height="1000">
+                        <div class="u-container-layout u-container-layout-2"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script>
+        //Renders any popup sent from Controller
+        @Html.Raw(ViewBag.Popup)
+    </script>
+}

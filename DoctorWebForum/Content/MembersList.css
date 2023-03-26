@@ -1,0 +1,23 @@
+﻿body {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+}
+
+.u-header{
+    background-color: #222 !important;
+    color: white;
+}
+
+.body-container {
+    width: 100%;
+    min-height: 100vh;
+    background: white !important;
+}
+
+.body-content h2 {
+    margin: 30px;
+    text-align: center;
+    font-weight: 700;
+    
+    font-family: 'Poppins', sans-serif;
+}

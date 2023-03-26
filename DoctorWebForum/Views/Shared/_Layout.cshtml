@@ -1,0 +1,24 @@
+﻿@*Layout template page that is rendered by other views*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Doctor's Tank</title>
+    <!-- Renders the Style bundles -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="u-body u-xl-mode">
+    <!-- Renders the navbar partial view -->
+    @Html.Partial("_NavBar")
+
+
+    @RenderBody()
+
+    <!-- Renders the Scripts bundle -->
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

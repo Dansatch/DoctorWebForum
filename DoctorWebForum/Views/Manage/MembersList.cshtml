@@ -1,0 +1,91 @@
+﻿@*Members List view for admins*@
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css/Members")
+
+<div class="body-container">
+    <div class="container body-content">
+        <h2>Members</h2>
+
+        <table id="members" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Members</th>
+                    <th>Medical Field/Specialty</th>
+                    <th>Experience</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        //Renders popup sent from controller
+        @Html.Raw(ViewBag.Popup)
+
+        //Uses ajax to get data from API and displays them using jquery datatables plugin
+        $(document).ready(function () {
+            var table = $("#members").DataTable({
+                ajax: {
+                    url: "/api/users",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, user) {
+                            return "<a href='/manage/index/" + user.userName + "'>" + user.firstName + " " + user.lastName + "</a>"
+                        }
+                    },
+                    {
+                        data: "medicalField",
+
+                        render: function (data, type, user) {
+
+                            if (user.isPrivate)
+                                return "<span class='membersList-privateUserField'> Private Account </span>"
+
+                            return user.medicalField
+                        }
+                    },
+                    {
+                        data: "experience",
+                        render: function (data, type, user) {
+                            return user.experience + " years"
+                        }
+                    },
+                    {
+                        data: "userName",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            //Activates the delete button
+            $("#members").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete??", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/users/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                })
+
+            });
+        });
+    </script>
+}

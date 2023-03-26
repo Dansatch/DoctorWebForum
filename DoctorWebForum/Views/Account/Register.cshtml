@@ -1,0 +1,107 @@
+﻿@model DoctorWebForum.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+@Styles.Render("~/Content/css/GeneralForm")
+
+<div class="registration-page-body" style="margin-top: -20px; padding-top: 10px; padding-bottom: 10px;">
+    <div class="wrapper">
+
+        <div class="form-left">
+            <h2 class="text-uppercase">Register</h2>
+
+            <p>
+                You are requested to fill in all fields in the form below.
+            </p>
+
+            <p class="text">
+                <span>Note:</span>
+                Make sure that any information entered is correct.
+            </p>
+
+            <div class="form-field">
+                @*Link for users that have an account*@
+                @Html.ActionLink("Already have an account?", "Login", routeValues: null, htmlAttributes: new { @class = "form-left-input" })
+            </div>
+
+        </div>
+
+        @*Form starts*@
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-right", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h2 class="text-uppercase">Registration form</h2>
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "input-field" })
+                </div>
+
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "input-field" })
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, new { @class = "input-field" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "input-field" })
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.MedicalField)
+                    @Html.TextBoxFor(m => m.MedicalField, new { @class = "input-field" })
+                </div>
+
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.Experience)
+                    @Html.TextBoxFor(m => m.Experience, new { @class = "input-field" })
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "input-field" })
+
+                </div>
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-field" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.AboutMe)
+                @Html.TextAreaFor(m => m.AboutMe, new { @class = "input-field" })
+            </div>
+
+            <div class="mb-3 isPrivate-CheckBox">
+                @Html.CheckBoxFor(m => m.IsPrivate)
+                @Html.LabelFor(m => m.IsPrivate)
+            </div>
+
+            <div class="form-field">
+                <input type="submit" value="Register" class="register" name="register">
+            </div>
+
+        }
+        @*Form ends*@
+    </div>
+
+</div>
+@section Scripts {
+    @*Renders jqueryvalidation bundle used in validating the form*@
+    @Scripts.Render("~/bundles/jqueryval")
+}

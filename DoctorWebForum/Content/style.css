@@ -1,0 +1,124 @@
+﻿body {
+    background-size: cover;
+}
+
+.u-header{
+    background-color: white;
+}
+
+.nav-container{
+    margin-top: -45px !important;
+}
+
+.loginLink:hover{
+    color: orangered;
+}
+
+.main-logo{
+    color: white;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+}
+
+.visitor-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 3%;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #ff4900;
+    font-size: medium;
+    border: 1px solid #ffbf00;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.nav-container{
+    margin-right: 50px !important;
+}
+
+.home-about-header{
+    width: 100%;
+}
+
+.body-container {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: white !important;
+    margin-top: -20px;
+    padding-top: 20px;
+}
+
+.edit-button {
+    padding: 12px;
+    background: #3786bd;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 130px;
+    border: none;
+    margin: 6px 0 50px 0px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    align-self: center;
+}
+
+.edit-button:hover {
+    background-color: #3785bde0;
+}
+
+.isPrivate-CheckBox{
+    display: flex;
+    padding-left: 10px;
+}
+
+.isPrivate-CheckBox label {
+    margin-top: 3%;
+    margin-left: 2%;
+    cursor: pointer;
+}
+
+.isPrivate-CheckBox label:hover {
+    transition: all .5s;
+    color: #E2545A !important;
+}
+
+.private-user{
+    display: none;
+}
+
+.private-user .u-sheet-1 {
+    min-height: auto !important;
+}
+
+.private-user .u-sheet-1 .u-text-1 {
+    color: darkslategrey !important;
+}
+
+.membersList-privateUserField{
+    color: indianred;
+}
+
+.home-title-header {
+    width: 80% !important;
+}
+
+@media (max-width: 1000px){
+    .home-title-header {
+        font-size: 180% !important;
+    }
+}
+
+.dataTables_filter label input[type="search"]{
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    box-shadow: 2px 2px 1px 1px gray;
+}

@@ -1,0 +1,70 @@
+﻿@model DoctorWebForum.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "EDIT";
+}
+@Styles.Render("~/Content/css/GeneralForm")
+
+<div class="body-container">
+    @*Form container*@
+    <div class="wrapper">
+
+        @using (Html.BeginForm("Save", "Manage", FormMethod.Post, new { @class = "form-right", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h2 class="text-uppercase">EDIT Details</h2>
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.User.FirstName)
+                    @Html.TextBoxFor(m => m.User.FirstName, new { @class = "input-field" })
+                </div>
+
+                <div class="col-sm-6 mb-3">
+                    @Html.LabelFor(m => m.User.LastName)
+                    @Html.TextBoxFor(m => m.User.LastName, new { @class = "input-field" })
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.User.MedicalField)
+                @Html.TextBoxFor(m => m.User.MedicalField, new { @class = "input-field" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.User.Email)
+                @Html.TextBoxFor(m => m.User.Email, new { @class = "input-field" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.User.AboutMe)
+                @Html.TextAreaFor(m => m.User.AboutMe, new { @class = "input-field" })
+            </div>
+
+            <div class="mb-3 isPrivate-CheckBox">
+                @Html.CheckBoxFor(m => m.User.IsPrivate)
+                @Html.LabelFor(m => m.User.IsPrivate)
+            </div>
+
+            @Html.HiddenFor(m => m.User.UserName)
+
+            <div class="form-field">
+                <input type="submit" value="Edit" class="edit-form-submit-button" name="edit">
+            </div>
+
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @*Renders jquery validation bundle for form validation*@
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        //Renders any popup sent from controller
+        @Html.Raw(ViewBag.Popup)
+    </script>
+}

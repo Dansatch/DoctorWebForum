@@ -1,0 +1,109 @@
+﻿@using Microsoft.AspNet.Identity
+@model DoctorWebForum.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+@Styles.Render("~/Content/css/User")
+
+@*Hides details if user is private and not the current user*@
+@if (Model.User.IsPrivate && !(ViewBag.IsCurrentUserOwnerOfPage))
+{
+    <style>
+        .public-user{
+            display: none !important;
+        }
+
+        .private-user{
+            display: block !important;
+        }
+    </style>
+}
+
+<section class="u-align-center u-clearfix u-section-1 user public-user" id="carousel_fc6f">
+    <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-sheet-1">
+
+        <h2 class="u-text u-text-palette-2-base u-text-1">@Model.User.FirstName @Model.User.LastName</h2>
+
+        <h4 class="u-text u-text-2">@Model.User.MedicalField (@Model.User.Experience)</h4>
+
+        <p class="u-text u-text-3">
+            @Model.User.AboutMe
+           
+        </p>
+        </p>
+
+        @*Hides edit button is user is not the current user*@
+        @if (ViewBag.IsCurrentUserOwnerOfPage == true)
+        {
+            @Html.ActionLink("EDIT DETAILS", "Edit", "Manage", new { userName = User.Identity.GetUserName() }, new { @class = "edit-button" })
+        }
+
+        <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1141" data-image-height="1027"></div>
+
+        <!-- Key Details -->
+        <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xl u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-shape-rectangle u-group-1" style="">
+            <div class="u-container-layout u-valign-bottom-sm u-valign-middle-xs u-container-layout-1">
+
+                <div class="u-align-center u-border-2 u-border-palette-5-light-2 u-container-style u-group u-hover-feature u-palette-5-light-2 u-shape-circle u-group-2">
+                    <div class="u-container-layout u-valign-middle u-container-layout-2">
+
+                        <h5 class="u-hover-feature u-text u-text-default u-text-palette-1-base u-text-5">
+                            <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-5-base u-btn-2">Resume</a>
+                        </h5>
+
+                    </div>
+                </div>
+
+                <div class="u-align-center u-border-2 u-border-palette-4-light-2 u-container-style u-group u-hover-feature u-palette-4-light-2 u-shape-circle u-group-3">
+                    <div class="u-container-layout u-valign-middle u-container-layout-3">
+                        <h5 class="u-hover-feature u-text u-text-default u-text-palette-2-base u-text-6">
+                            <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-4-base u-btn-3">
+                                My Skills<br>
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+                    
+                <div class="u-align-center u-border-2 u-border-palette-3-light-2 u-container-style u-group u-hover-feature u-palette-3-light-2 u-shape-circle u-group-4">
+                    <div class="u-container-layout u-valign-middle u-container-layout-4">
+                        <h5 class="u-hover-feature u-text u-text-default u-text-palette-3-base u-text-7">
+                            <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-3-base u-btn-4">Contacts</a>
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="u-align-center u-border-2 u-border-palette-2-light-2 u-container-style u-group u-hover-feature u-palette-2-light-2 u-shape-circle u-group-5">
+                    <div class="u-container-layout u-valign-middle u-container-layout-5">
+                        <h5 class="u-hover-feature u-text u-text-default u-text-palette-2-base u-text-8">
+                            <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-2-base u-btn-5">Projects</a>
+                        </h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+<section class="u-align-center u-clearfix u-section-1 user private-user" id="carousel_fc6f">
+    <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-sheet-1">
+
+        <h2 class="u-text u-text-palette-2-base u-text-1">Private Account</h2>
+
+        <h4 class="u-text u-text-2">This account has been made private <i class="fa fa-lock"></i> </h4>
+
+        <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1141" data-image-height="1027"></div>
+
+    </div>
+</section>
+
+
+
+@section Scripts {
+    <script>
+        @Html.Raw(ViewBag.Popup)
+    </script>
+}
